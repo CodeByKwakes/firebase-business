@@ -12,14 +12,23 @@ export class AppComponent implements OnInit {
   title = 'app works!';
   businesses: Business[];
   categories: Category[];
+  appState: string;
+  activeKey: string;
 
-  constructor(private _firebaseService: FirebaseService) {}
+  constructor(private _firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this._firebaseService.getBusinesses()
-    .subscribe(businesses => this.businesses = businesses);
+      .subscribe(businesses => this.businesses = businesses);
 
-     this._firebaseService.getCategories()
-    .subscribe(categories => this.categories = categories);
+    this._firebaseService.getCategories()
+      .subscribe(categories => this.categories = categories);
+  }
+
+  changeState(state, key) {
+    if (key) {
+      this.activeKey = key;
+    }
+    this.appState = state;
   }
 }
