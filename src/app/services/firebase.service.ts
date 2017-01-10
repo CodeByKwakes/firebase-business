@@ -9,23 +9,23 @@ export class FirebaseService {
 
   constructor(private af: AngularFire) { }
 
-  getBusinesses(category: string = null) {
+  getBusinesses(category: string = null): FirebaseListObservable<Business[]> {
     if (category != null) {
       this.businesses = this.af.database.list('businesses', {
         query: {
           orderByChild: 'category',
           equalTo: category
         }
-      }) as FirebaseListObservable<Business[]>;
+      });
 
     } else {
-      this.businesses = this.af.database.list('businesses') as FirebaseListObservable<Business[]>;
+      this.businesses = this.af.database.list('businesses');
     }
     return this.businesses;
   }
 
-  getCategories() {
-    this.categories = this.af.database.list('categories') as FirebaseListObservable<Category[]>;
+  getCategories(): FirebaseListObservable<Category[]> {
+    this.categories = this.af.database.list('categories');
     return this.categories;
   }
 
@@ -34,11 +34,11 @@ export class FirebaseService {
   }
 
   updateBusiness(key, updBusiness) {
-    return this.businesses.update(key, updBusiness)
+    return this.businesses.update(key, updBusiness);
   }
 
   deleteBusiness(key) {
-   this.businesses.remove(key)
+    this.businesses.remove(key);
   }
 }
 
