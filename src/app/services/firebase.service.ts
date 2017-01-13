@@ -46,7 +46,7 @@ export interface Business {
   $key?: string;
   company?: string;
   description?: string;
-  category: string;
+  category: Category;
   years_in_business?: number;
   street_address?: string;
   city?: string;

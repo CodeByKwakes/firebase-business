@@ -43,6 +43,8 @@ export class AppComponent implements OnInit {
       this.activeKey = key;
     }
     this.appState = state;
+    console.log(`Active Key: - ${this.activeKey}`)
+    console.log(`AppState: - ${this.appState}`)
   }
 
   filterCategory(category) {
